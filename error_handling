@@ -1,0 +1,39 @@
+# read_write_file.py
+
+def modify_file_content(input_filename, output_filename):
+    try:
+        with open(input_filename, 'r') as infile:
+            lines = infile.readlines()
+
+        # Modify: Make every line uppercase
+        modified_lines = [line.upper() for line in lines]
+
+        with open(output_filename, 'w') as outfile:
+            outfile.writelines(modified_lines)
+
+        print(f" Modified content written to '{output_filename}'.")
+
+    except FileNotFoundError:
+        print(f" File '{input_filename}' not found.")
+    except IOError as e:
+        print(f" IOError occurred: {e}")
+
+
+
+# error_handling_lab.py
+
+def read_file_with_prompt():
+    filename = input(" Enter the filename to read: ")
+
+    try:
+        with open(filename, 'r') as f:
+            print("📄 File contents:\n")
+            print(f.read())
+
+    except FileNotFoundError:
+        print(" Oops! File not found. Please check the filename and try again.")
+    except PermissionError:
+        print(" You don’t have permission to read this file.")
+    except Exception as e:
+        print(f"⚠ An unexpected error occurred: {e}")
+
